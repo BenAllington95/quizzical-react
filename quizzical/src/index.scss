@@ -33,6 +33,7 @@ body {
         @include centerFlex("", center);
         padding: 3em;
         width: 80%;
+        max-width: 600px;
         height: 60vh;
         position: relative;
         border-radius: 10px;
