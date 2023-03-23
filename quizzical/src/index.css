@@ -8,14 +8,22 @@ body {
   margin: 0;
 }
 body h1,
+body h3,
 body p {
   margin: 0;
+}
+body h3 {
+  font-size: 16px;
+}
+body p {
+  font-size: 12px;
 }
 
 .App {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: "";
   font-family: "Karla", sans-serif;
   height: 100vh;
 }
@@ -24,13 +32,14 @@ body p {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: "";
-  padding: 3em;
-  width: 80%;
-  max-width: 600px;
-  height: 60vh;
+  flex-direction: column;
+  gap: 15px;
+  width: 90%;
+  max-width: 800px;
+  height: 700px;
   position: relative;
   border-radius: 10px;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
 }
 .App .quiz img {
   position: absolute;
@@ -39,13 +48,16 @@ body p {
   bottom: 0;
   left: 0;
   border-bottom-left-radius: 10px;
+  z-index: 0;
 }
 .App .quiz .yellow-blob {
   top: 0;
   right: 0;
   border-top-right-radius: 10px;
+  z-index: 0;
 }
 .App .quiz h1,
+.App .quiz h3,
 .App .quiz p {
   color: #293264;
 }
@@ -61,6 +73,7 @@ body p {
 }
 .App .quiz .start-items .start-description {
   margin: 0.8em 0 2em;
+  font-size: 16px;
 }
 .App .quiz .start-items .start-button {
   padding: 1em 3em;
@@ -79,9 +92,30 @@ body p {
   transform: scale(95%);
   filter: brightness(105%);
 }
+.App .questions {
+  z-index: 999;
+  padding: 0;
+  width: 80%;
+}
 .App .questions .question {
-  padding: 1em;
-  border-bottom: 1px solid white;
+  padding: 1.3em 1em;
+  border-bottom: 0.794239px solid #DBDEF0;
+}
+.App .questions .question .answers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 5px;
+  margin-top: 1em;
+}
+.App .questions .question .answers .answer {
+  border: 0.794239px solid #4D5B9E;
+  color: #293264;
+  border-radius: 8px;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  text-align: center;
 }
 
 @media (max-width: 462px) {

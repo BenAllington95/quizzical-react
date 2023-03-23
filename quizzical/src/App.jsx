@@ -6,30 +6,37 @@ import Home from './components/Home'
 
 export default function App() {
     
-    const [data, setData] = useState([]);
-    const [startQuiz, setStartQuiz] = useState(false)
+  const [data, setData] = useState([]);
+  const [startQuiz, setStartQuiz] = useState(false)
 
-    useEffect(() => {
-    fetch('https://opentdb.com/api.php?amount=5')
-      .then(response => response.json())
-        .then(data => setData(data.results))
+  useEffect(() => {
+  fetch('https://opentdb.com/api.php?amount=5')
+    .then(response => response.json())
+      .then(data => setData(data.results))
   }, []) // fetch api for quiz questions
-
-
-const quizElements = data.map(arr => {
-    return <Question 
-    key={arr.question} 
-    {...arr}
-    />
-}) // Map over questions onto page
 
 function handleStartButton() {
     setStartQuiz(true)
 } // flip over quiz to start 
 
-{/* <div id="questions" className="questions">
-            {quizElements}
-        </div> */}
+const quizElements = data.map((arr, index) => {
+  return <Question 
+  key={arr.question}
+  {...arr}
+  />
+}) // Map over questions onto page
+
+function handleAnswers(index) {
+  let correctAnswer = data[index].correct_answer
+  let incorrectAnswers = data[index].incorrect_answers
+  let randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
+  incorrectAnswers.splice(randomIndex, 0, correctAnswer);
+  console.log(correctAnswer)
+
+  return incorrectAnswers
+}
+
+console.log(handleAnswers(0))
 
   return (
     <div className="App">
@@ -39,7 +46,11 @@ function handleStartButton() {
         startQuiz={handleStartButton}
         /> 
         : 
-        <Quiz />}
+        <Quiz 
+        key="quiz"
+        data={data}
+        quizElements={quizElements}
+        />}
     </div>
   );
 }
