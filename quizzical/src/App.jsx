@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Quiz from './components/Quiz'
 import Question from './components/Question'
 import Home from './components/Home'
 
@@ -38,7 +39,7 @@ function handleStartButton() {
         startQuiz={handleStartButton}
         /> 
         : 
-        <h1>test</h1>}
+        <Quiz />}
     </div>
   );
 }

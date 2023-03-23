@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #252525;
+  background: linear-gradient(to top left, #fffad2, #deebf8);
   padding: 0;
   margin: 0;
 }
@@ -20,7 +20,7 @@ body p {
   height: 100vh;
 }
 .App .quiz {
-  background: white;
+  background: whitesmoke;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,6 +44,10 @@ body p {
   top: 0;
   right: 0;
   border-top-right-radius: 10px;
+}
+.App .quiz h1,
+.App .quiz p {
+  color: #293264;
 }
 .App .quiz .start-items {
   display: flex;

@@ -3,7 +3,7 @@
 }
 
 body {
-    background: #252525;
+    background: linear-gradient(to top left, #fffad2, #deebf8);
     padding: 0;
     margin: 0;
 
@@ -21,7 +21,6 @@ body {
 }
 
 .App {
-    // background-color: aliceblue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +28,7 @@ body {
     height: 100vh;
 
     .quiz {
-        background: white;
+        background: whitesmoke;
         @include centerFlex("", center);
         padding: 3em;
         width: 80%;
@@ -54,6 +53,12 @@ body {
             right: 0;
             border-top-right-radius: 10px;
         }
+
+        h1,
+        p {
+            color: #293264;
+        }
+
         
 
         .start-items {
