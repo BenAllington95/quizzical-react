@@ -8,3 +8,17 @@ body {
     }
 }
 
+.App {
+    // background-color: aliceblue;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+
+    .questions {
+        .question {
+            padding: 1em;
+            border-bottom: 1px solid white;
+        }
+    }
+}
+

@@ -15,19 +15,20 @@ export default function App() {
   }, []);
 
 
-const quizElements = data.map(element => {
-    return (<li>{element.question}</li>)
+const quizElements = data.map(arr => {
+    return <Question 
+    key={arr.question} 
+    {...arr}
+    />
 })
 
-
-
-
+// console.log(data[0].correct_answer)
 
   return (
-    <div>
-        <ul>
+    <div className="App">
+        <div className="questions">
             {quizElements}
-        </ul>
+        </div>
     </div>
   );
 }
