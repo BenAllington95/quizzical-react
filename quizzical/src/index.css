@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #252525;
-  color: white;
+  padding: 0;
+  margin: 0;
 }
 body h1,
 body p {
@@ -8,9 +13,18 @@ body p {
 }
 
 .App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Karla", sans-serif;
   height: 100vh;
-  display: grid;
-  place-content: center;
+}
+.App .start {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .App .questions .question {
   padding: 1em;
