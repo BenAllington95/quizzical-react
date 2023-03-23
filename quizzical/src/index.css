@@ -19,14 +19,68 @@ body p {
   font-family: "Karla", sans-serif;
   height: 100vh;
 }
-.App .start {
+.App .quiz {
   background: white;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  flex-direction: "";
+  padding: 3em;
+  width: 80%;
+  height: 60vh;
+  position: relative;
+  border-radius: 10px;
+}
+.App .quiz img {
+  position: absolute;
+}
+.App .quiz .blue-blob {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 10px;
+}
+.App .quiz .yellow-blob {
+  top: 0;
+  right: 0;
+  border-top-right-radius: 10px;
+}
+.App .quiz .start-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.App .quiz .start-items .start-title,
+.App .quiz .start-items .start-description {
+  color: #293264;
+}
+.App .quiz .start-items .start-description {
+  margin: 0.8em 0 2em;
+}
+.App .quiz .start-items .start-button {
+  padding: 1em 3em;
+  border-radius: 10px;
+  border: none;
+  background: #4D5B9E;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.App .quiz .start-items .start-button:hover {
+  filter: brightness(110%);
+}
+.App .quiz .start-items .start-button:active {
+  transform: scale(95%);
+  filter: brightness(105%);
 }
 .App .questions .question {
   padding: 1em;
   border-bottom: 1px solid white;
+}
+
+@media (max-width: 462px) {
+  .App .start {
+    padding: 1em;
+  }
 }/*# sourceMappingURL=index.css.map */

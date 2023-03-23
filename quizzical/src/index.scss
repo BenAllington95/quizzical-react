@@ -13,6 +13,13 @@ body {
     }
 }
 
+@mixin centerFlex($direction, $position) {
+    display: flex;
+    align-items: center;
+    justify-content: $position;
+    flex-direction: $direction;
+}
+
 .App {
     // background-color: aliceblue;
     display: flex;
@@ -21,12 +28,70 @@ body {
     font-family: 'Karla', sans-serif;
     height: 100vh;
 
-    .start {
+    .quiz {
         background: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        @include centerFlex("", center);
+        padding: 3em;
+        width: 80%;
+        height: 60vh;
+        position: relative;
+        border-radius: 10px;
+        
+
+        img {
+            position: absolute;
+        }
+
+        .blue-blob {
+            bottom: 0;
+            left: 0;
+            border-bottom-left-radius: 10px;
+        }
+
+        .yellow-blob {
+            top: 0;
+            right: 0;
+            border-top-right-radius: 10px;
+        }
+        
+
+        .start-items {
+
+            @include centerFlex(column, center);
+
+            .start-title,
+            .start-description {
+                color: #293264;
+            }
+
+            .start-description {
+                margin: 0.8em 0 2em;
+            } 
+    
+            .start-button {
+                padding: 1em 3em;
+                border-radius: 10px;
+                border: none;
+                background: #4D5B9E;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+
+                transition: all 0.1s;
+
+                &:hover {
+                    filter: brightness(110%)
+                }
+    
+                &:active {
+                    transform: scale(95%);
+                    filter: brightness(105%)
+                } // start active
+            } // start - button
+        } // start-items
+
+        
+
     }
 
     .questions {
@@ -35,5 +100,17 @@ body {
             border-bottom: 1px solid white;
         }
     }
+}
+
+
+@media (max-width: 462px) {
+
+    .App {
+
+        .start {
+            padding: 1em;
+        }
+    }
+    
 }
 
