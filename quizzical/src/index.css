@@ -116,6 +116,12 @@ body p {
   padding: 0.3em 1em;
   cursor: pointer;
   text-align: center;
+  transition: all 0.2s;
+}
+.App .questions .question .answers .active {
+  background: #293264;
+  color: #deebf8;
+  transition: all 0.2s;
 }
 
 @media (max-width: 462px) {

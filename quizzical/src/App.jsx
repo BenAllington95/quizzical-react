@@ -26,17 +26,16 @@ const quizElements = data.map((arr, index) => {
   />
 }) // Map over questions onto page
 
-function handleAnswers(index) {
-  let correctAnswer = data[index].correct_answer
-  let incorrectAnswers = data[index].incorrect_answers
-  let randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
-  incorrectAnswers.splice(randomIndex, 0, correctAnswer);
-  console.log(correctAnswer)
+// function handleAnswers(index) {
+//   let correctAnswer = data[index].correct_answer
+//   let incorrectAnswers = data[index].incorrect_answers
+//   let randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
+//   incorrectAnswers.splice(randomIndex, 0, correctAnswer);
 
-  return incorrectAnswers
-}
+//   return incorrectAnswers
+// }
 
-console.log(handleAnswers(0))
+// console.log(handleAnswers(0))
 
   return (
     <div className="App">

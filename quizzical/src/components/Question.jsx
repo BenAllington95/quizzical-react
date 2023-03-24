@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Question (props) {
+    const [selectedChoice, setSelectedChoice] = useState(null)
+
+    function handleChoiceClick(e) {
+        setSelectedChoice(e)
+    }
+
+    console.log(selectedChoice)
 
     // console.log(props.handleAnswers())
 
     const answerElements = props.incorrect_answers.map(answer => {
         return (
-            <p key={answer} onClick={() => console.log(answer)} id={answer} className="answer">{answer}</p>
+            <p key={answer} 
+            onClick={(event) => handleChoiceClick(event.target.id)} 
+            id={answer} 
+            className={selectedChoice === answer ? "answer active" : "answer"}>{answer}
+            </p>
         )
     })
 

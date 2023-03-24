@@ -4,7 +4,6 @@ import yellowBlob from '../images/yellowBlobHome.png';
 
 export default function Home(props) {
 
-    
 
     return (
         <div className="quiz">

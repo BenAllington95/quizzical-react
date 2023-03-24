@@ -121,7 +121,7 @@ body {
 
         .question {
             padding: 1.3em 1em;
-            border-bottom: 0.794239px solid #DBDEF0;
+            border-bottom: 0.794239px solid #DBDEF0;    
 
             .answers {
                 @include centerFlex(row, flex-start);
@@ -135,6 +135,13 @@ body {
                     padding: 0.3em 1em;
                     cursor: pointer;
                     text-align: center;
+                    transition: all .2s;
+                }
+
+                .active {
+                    background: #293264;
+                    color: #deebf8;
+                    transition: all .2s;
                 }
             }
 
