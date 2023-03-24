@@ -22,20 +22,23 @@ function handleStartButton() {
 const quizElements = data.map((arr, index) => {
   return <Question 
   key={arr.question}
+  answers={handleAnswers(index)}
   {...arr}
   />
 }) // Map over questions onto page
 
-// function handleAnswers(index) {
-//   let correctAnswer = data[index].correct_answer
-//   let incorrectAnswers = data[index].incorrect_answers
-//   let randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
-//   incorrectAnswers.splice(randomIndex, 0, correctAnswer);
+function handleAnswers(index) {
+  const correctAnswer = data[index].correct_answer
+  const randomIndex = Math.floor(Math.random() * (data[index].incorrect_answers.length + 1))
+  const allAnswers = [...data[index].incorrect_answers]
+  allAnswers.splice(randomIndex, 0, correctAnswer)
 
-//   return incorrectAnswers
-// }
+  return allAnswers
 
-// console.log(handleAnswers(0))
+}
+
+
+
 
   return (
     <div className="App">
