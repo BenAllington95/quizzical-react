@@ -41,6 +41,15 @@ body p {
   border-radius: 10px;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
 }
+.App .quiz .submit-button {
+  padding: 1em 3em;
+  border-radius: 10px;
+  border: none;
+  background: #4D5B9E;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
 .App .quiz img {
   position: absolute;
 }

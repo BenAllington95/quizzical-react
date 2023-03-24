@@ -13,7 +13,12 @@ export default function Quiz(props) {
             <div className="questions">
                 {props.quizElements}
             </div>
-            <button>test</button>
+            
+            <button 
+            className="submit-button"
+            onClick={()=> console.log("submit button")}>
+            Check
+            </button>
 
         </div>
     )
