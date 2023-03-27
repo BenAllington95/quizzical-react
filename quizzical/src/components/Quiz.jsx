@@ -5,39 +5,50 @@ import Question from '../components/Question'
 
 
 
-export default function Quiz() {
+export default function Quiz(props) {
 
+    // function submitAnswer(answer) {
+    //     console.log(`your answer was: ${answer}`)
+    // } 
 
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        fetch('https://opentdb.com/api.php?amount=5')
-          .then(response => response.json())
-            .then(data => setData(data.results))
-      
-          
-        }, []) // fetch api for quiz questions
-
-        const quizElements = data.map((arr, index) => {
+        const quizElements = props.data.map((arr, index) => {
             return <Question 
             key={arr.question}
             answers={handleAnswers(index)}
+            answerBoolean={true}
             {...arr}
             />
           }) // Map over questions onto page
+
           
           
-          
-          console.log(data)
-          
+
           function handleAnswers(index) {
-            const correctAnswer = data[index].correct_answer
-            const randomIndex = Math.floor(Math.random() * (data[index].incorrect_answers.length + 1))
-            const allAnswers = [...data[index].incorrect_answers]
+            const correctAnswer = props.data[index].correct_answer
+            const randomIndex = Math.floor(Math.random() * (props.data[index].incorrect_answers.length + 1))
+            const allAnswers = [...props.data[index].incorrect_answers]
             allAnswers.splice(randomIndex, 0, correctAnswer)
           
             return allAnswers
           } // handles all answers, randomly pushes the correct answer into the incorrect answers array
+
+
+        // function handleUserAnswer(index, e, question) {
+        //     // console.log(`Choice: ${e}, Question: ${question}`)
+        //     console.log(index)
+        //     console.log(e)
+        //     console.log(question)
+
+        //     if (data[index].question === question) {
+        //       console.log(true)
+        //     } else {
+        //       console.log(false)
+        //     }
+
+        //    const answers = data.map(el => {
+        //      return el.question === question ? e : false
+        //   })
+        // }
 
     return (
         <div className="quiz">

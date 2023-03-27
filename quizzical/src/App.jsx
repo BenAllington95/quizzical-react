@@ -1,40 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Quiz from './components/Quiz'
 import Home from './components/Home'
 
 
 export default function App() {
   const [startQuiz, setStartQuiz] = useState(false)
+  const [data, setData] = useState([]);
 
- 
+  function handleStartButton() {
+      setStartQuiz(true)
+  } 
 
-function handleStartButton() {
-    setStartQuiz(true)
-} // flip over quiz to start 
-
-// function handleUserAnswer(e, question) {
-//   console.log(`Choice: ${e}, Question: ${question}`)
-
-//   // if (data[1].question === question) {
-//   //   console.log(true)
-//   // } else {
-//   //   console.log(false)
-//   // }
-
-//   const answers = data.map(el => {
-//     return el.question === question ? e : false
-//   })
-
-//   console.log(answers)
-
-// }
-
-
-
-
-
-
-
+  useEffect(() => {
+    fetch('https://opentdb.com/api.php?amount=5')
+      .then(response => response.json())
+        .then(data => setData(data.results))
+  
+      
+    }, [startQuiz]) // fetch api for quiz questions
 
   return (
     <div className="App">
@@ -46,6 +29,7 @@ function handleStartButton() {
         : 
         <Quiz 
         key="quiz"
+        data={data}
         />}
     </div>
   );
