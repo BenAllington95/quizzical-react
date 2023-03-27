@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function Question (props) {
     const [selectedChoice, setSelectedChoice] = useState(null)
 
     function handleChoiceClick(e) {
         setSelectedChoice(e)
+        props.handleUserAnswer(e, props.question)
     } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
 
+    
     const answerElements = props.answers.map(answer => {
         return (
             <p key={answer} 
-            onClick={(event) => handleChoiceClick(event.target.id)} 
+            onClick={(event) => {
+                handleChoiceClick(event.target.id)
+            }} 
             id={answer} 
             className={selectedChoice === answer ? "answer active" : "answer"}>{answer}
             </p>
@@ -19,12 +23,13 @@ export default function Question (props) {
 
     function handleQuestionString() {
         const string = props.question
-        console.log(string)
 
-        const replaceQuestionStr = string.replace(/&#039;|&quot;/g, (match) => {
-            if (match === "&#039;") { // &#039; == '
+        const replaceQuestionStr = string.replace(/&#039;|&quot;|&ldquo;/g, (match) => {
+            if (match === "&#039;") { // &#039; === '
                 return "'";
-              } else if (match === "&quot;") { // &quot; == "
+              } else if (match === "&quot;") { // &quot; === "
+                return `"`;
+              } else if (match === "&ldquo;") { // &quot; === "
                 return `"`;
               } else {
                 return match;
@@ -33,9 +38,6 @@ export default function Question (props) {
 
         return replaceQuestionStr
     } // replaces two arguments that need to be changed when being called from api, this includes the double quote and apostrophe symbols
-
-
-
 
     return (
         <div className="question">
