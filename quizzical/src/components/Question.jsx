@@ -5,7 +5,6 @@ export default function Question (props) {
 
     function handleChoiceClick(e) {
         setSelectedChoice(e)
-        props.handleUserAnswer(e, props.question)
     } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
 
     
@@ -29,7 +28,7 @@ export default function Question (props) {
                 return "'";
               } else if (match === "&quot;") { // &quot; === "
                 return `"`;
-              } else if (match === "&ldquo;") { // &quot; === "
+              } else if (match === "&ldquo;") { // &ldquo; === "
                 return `"`;
               } else {
                 return match;
