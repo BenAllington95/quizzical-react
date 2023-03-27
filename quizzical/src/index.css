@@ -50,6 +50,9 @@ body p {
   font-weight: bold;
   cursor: pointer;
 }
+.App .quiz .submit-button:hover {
+  background: #3c477c;
+}
 .App .quiz img {
   position: absolute;
 }
@@ -93,9 +96,16 @@ body p {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.1s;
+  padding: 1em 3em;
+  border-radius: 10px;
+  border: none;
+  background: #4D5B9E;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 .App .quiz .start-items .start-button:hover {
-  filter: brightness(110%);
+  background: #3c477c;
 }
 .App .quiz .start-items .start-button:active {
   transform: scale(95%);
