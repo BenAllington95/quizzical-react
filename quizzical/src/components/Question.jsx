@@ -22,7 +22,7 @@ export default function Question (props) {
 
     function handleString(str) {
         const string = str
-        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&amp;/g, (match) => {
+        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&Aacute;|&amp;/g, (match) => {
             if (match === "&#039;") { // &#039; === '
                 return "'";
               } else if (match === "&quot;") { // &quot; === "
@@ -33,6 +33,8 @@ export default function Question (props) {
                 return `&`;
               } else if (match === "&lrm;") { // &lrm; === "
                 return ``;
+              } else if (match === "&Aacute;") {
+                return `Á`;
               } else {
                 return match;
               }
