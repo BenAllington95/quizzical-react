@@ -4,10 +4,10 @@ export default function Question (props) {
 
     const [selectedChoice, setSelectedChoice] = useState(null)
 
-  function handleChoiceClick(answer) {
-      setSelectedChoice(answer)
-  } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
-
+    function handleChoiceClick(answer) {
+        setSelectedChoice(answer)
+        props.holdAnswer(props.id, answer)
+    } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
     
     const answerElements = props.answers.map(answer => {
         return (

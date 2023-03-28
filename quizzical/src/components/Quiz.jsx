@@ -8,13 +8,13 @@ import { nanoid } from 'nanoid'
 
 export default function Quiz(props) {
 
-        const [data, setData] = useState([]);
+        const [data, setData] = useState([]) // store the data from api
 
         useEffect(() => {
             fetch('https://opentdb.com/api.php?amount=5')
             .then(response => response.json())
                 .then(data => refactorData(data.results))
-        }, []) // fetch api for quiz questions
+        }, []) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
        
     
         function refactorData(api) {
@@ -32,51 +32,34 @@ export default function Quiz(props) {
               question: item.question,
               answers: allAnswers,
               correctAnswer: correctAnswer,
-              isRight: false
+              isRight: false,
+              isHeld: false
             }
           }))
-    
         }
-    
+
+        function holdAnswer(id, answer) {
+            setData(prevData => prevData.map(item => {
+                if (item.id === id) {
+                    return { ...item, isHeld: true, userAnswer: answer};
+                } else {
+                    return item;
+                }
+            }))
+        }
+
+        console.log(data)
 
         const quizElements = data.map((arr, index) => {
             return <Question 
             key={arr.question}
             answers={arr.answers}
-            answerBoolean={true}
+            holdAnswer={holdAnswer}
             {...arr}
             />
           }) // Map over questions onto page
 
-          
-          
-
-        //   function handleAnswers(index) {
-        //     const correctAnswer = data[index].correct_answer
-        //     const randomIndex = Math.floor(Math.random() * (data[index].incorrect_answers.length + 1))
-        //     const allAnswers = [...data[index].incorrect_answers]
-        //     allAnswers.splice(randomIndex, 0, correctAnswer)
-          
-        //     return allAnswers
-        //   } // handles all answers, randomly pushes the correct answer into the incorrect answers array
-
-
-        // function handleUserAnswer(index, e, question) {
-        //     // console.log(`Choice: ${e}, Question: ${question}`)
-        //     console.log(index)
-        //     console.log(e)
-        //     console.log(question)
-
-        //     if (data[index].question === question) {
-        //       console.log(true)
-        //     } else {
-        //       console.log(false)
-        //     }
-
-        //    const answers = data.map(el => {
-        //      return el.question === question ? e : false
-        //   })
-        // }
+    
 
     return (
         <div className="quiz">

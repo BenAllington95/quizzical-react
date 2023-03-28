@@ -21,7 +21,6 @@ export default function App() {
         : 
         <Quiz 
         key="quiz"
-        data={data}
         />}
     </div>
   );
