@@ -22,7 +22,7 @@ export default function Question (props) {
 
     function handleString(str) {
         const string = str
-        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&amp;/g, (match) => {
+        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&amp;/g, (match) => {
             if (match === "&#039;") { // &#039; === '
                 return "'";
               } else if (match === "&quot;") { // &quot; === "
@@ -31,12 +31,14 @@ export default function Question (props) {
                 return `"`;
               } else if (match === "&amp;") { // &amp; === &
                 return `&`;
+              } else if (match === "&lrm;") { // &lrm; === "
+                return ``;
               } else {
                 return match;
               }
             })
         return replaceStr
-    } // replaces two arguments that need to be changed when being called from api, this includes the double quote and apostrophe symbols
+    } // replaces two arguments that need to be changed when being called from api, this includes the double quote and apostrophe symbols. &lrm;
 
 
     return (

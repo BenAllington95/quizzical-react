@@ -10,6 +10,8 @@ export default function Quiz(props) {
 
         const [data, setData] = useState([]) // store the data from api
         const [quizzical, setQuizzical] = useState(false) // submit button to calculate when true
+        const [score, setScore] = useState(0)
+
 
         useEffect(() => {
             fetch('https://opentdb.com/api.php?amount=5')
@@ -53,7 +55,8 @@ export default function Quiz(props) {
 
         useEffect(() => {
             if (quizzical) {
-                console.log(countIsHeld(data))
+                checkAnswers(data)
+                console.log(score)
                 
             } else {
 
@@ -66,6 +69,18 @@ export default function Quiz(props) {
             return count
         }
 
+        function checkAnswers(arr) {
+            for (let i=0; i<arr.length; i++) {
+                if (arr[i].correctAnswer === arr[i].userAnswer) {
+                    console.log("correct answer")
+                    setScore(prevCount => prevCount + 1)
+                } else if (arr[i].userAnswer === "") {
+                    console.log("blank")
+                } else {
+                    console.log("incorrect anser")
+                }
+            }
+        }
     
 
     
@@ -88,7 +103,7 @@ export default function Quiz(props) {
                 {quizElements}
             </div>
 
-            {quizzical && <p>Answers Correct: 0/{data.length}</p>}
+            {quizzical && <p>Answers Correct: {score}/{data.length}</p>}
             
             <button 
             className="submit-button"
