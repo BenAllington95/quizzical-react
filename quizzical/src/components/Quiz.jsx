@@ -2,19 +2,47 @@ import React, { useState, useEffect } from 'react';
 import blueBlob from '../images/blueBlobHome.png';
 import yellowBlob from '../images/yellowBlobHome.png';
 import Question from '../components/Question'
+import { nanoid } from 'nanoid'
 
 
 
 export default function Quiz(props) {
 
-    // function submitAnswer(answer) {
-    //     console.log(`your answer was: ${answer}`)
-    // } 
+        const [data, setData] = useState([]);
 
-        const quizElements = props.data.map((arr, index) => {
+        useEffect(() => {
+            fetch('https://opentdb.com/api.php?amount=5')
+            .then(response => response.json())
+                .then(data => refactorData(data.results))
+        }, []) // fetch api for quiz questions
+       
+    
+        function refactorData(api) {
+    
+          setData(prevData => api.map(item => {
+            const correctAnswer = item.correct_answer
+            const randomIndex = Math.floor(Math.random() * (item.incorrect_answers.length + 1))
+            const allAnswers = [...item.incorrect_answers]
+            allAnswers.splice(randomIndex, 0, correctAnswer)
+    
+            // randomly pushes the correct answer inside of incorrect answers (now defined as allAnswers)
+    
+            return {
+              id: nanoid(),
+              question: item.question,
+              answers: allAnswers,
+              correctAnswer: correctAnswer,
+              isRight: false
+            }
+          }))
+    
+        }
+    
+
+        const quizElements = data.map((arr, index) => {
             return <Question 
             key={arr.question}
-            answers={handleAnswers(index)}
+            answers={arr.answers}
             answerBoolean={true}
             {...arr}
             />
@@ -23,14 +51,14 @@ export default function Quiz(props) {
           
           
 
-          function handleAnswers(index) {
-            const correctAnswer = props.data[index].correct_answer
-            const randomIndex = Math.floor(Math.random() * (props.data[index].incorrect_answers.length + 1))
-            const allAnswers = [...props.data[index].incorrect_answers]
-            allAnswers.splice(randomIndex, 0, correctAnswer)
+        //   function handleAnswers(index) {
+        //     const correctAnswer = data[index].correct_answer
+        //     const randomIndex = Math.floor(Math.random() * (data[index].incorrect_answers.length + 1))
+        //     const allAnswers = [...data[index].incorrect_answers]
+        //     allAnswers.splice(randomIndex, 0, correctAnswer)
           
-            return allAnswers
-          } // handles all answers, randomly pushes the correct answer into the incorrect answers array
+        //     return allAnswers
+        //   } // handles all answers, randomly pushes the correct answer into the incorrect answers array
 
 
         // function handleUserAnswer(index, e, question) {

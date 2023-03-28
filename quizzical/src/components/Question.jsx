@@ -8,16 +8,6 @@ export default function Question (props) {
       setSelectedChoice(answer)
   } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
 
-
-    function userAnswerCheck() {
-        if (selectedChoice === props.correct_answer) {
-            console.log("the correct answer")
-        } else {
-            console.log("incorrect answer")
-        }
-    }
-
-    userAnswerCheck()
     
     const answerElements = props.answers.map(answer => {
         return (
@@ -30,8 +20,8 @@ export default function Question (props) {
         )
     }) // maps through the prop answers array and converts into HTML, including a ternary that will give an active class to the element if the text matches the string of the element
 
-    function handleQuestionString() {
-        const string = props.question
+    function handleQuestionString(str) {
+        const string = str
 
         const replaceQuestionStr = string.replace(/&#039;|&quot;|&ldquo;/g, (match) => {
             if (match === "&#039;") { // &#039; === '
@@ -51,7 +41,7 @@ export default function Question (props) {
 
     return (
         <div className="question">
-            <h3>{handleQuestionString()}</h3>
+            <h3>{handleQuestionString(props.question)}</h3>
             <div className="answers">
                 {answerElements}
             </div>
