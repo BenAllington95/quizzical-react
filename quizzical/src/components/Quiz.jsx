@@ -14,7 +14,7 @@ export default function Quiz(props) {
             fetch('https://opentdb.com/api.php?amount=5')
             .then(response => response.json())
                 .then(data => refactorData(data.results))
-        }, []) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
+        }, [0]) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
        
     
         function refactorData(api) {
@@ -32,6 +32,7 @@ export default function Quiz(props) {
               question: item.question,
               answers: allAnswers,
               correctAnswer: correctAnswer,
+              userAnswer: "",
               isRight: false,
               isHeld: false
             }
@@ -48,7 +49,16 @@ export default function Quiz(props) {
             }))
         }
 
-        console.log(data)
+        // function checkAnswer(id) {
+        //     setData(prevData => prevData.map(item => {
+        //         if (item.id === id) {
+        //             return { ...item, : true, userAnswer: answer};
+        //         } else {
+        //             return item;
+        //         }
+        //     }))
+
+        // }
 
         const quizElements = data.map((arr, index) => {
             return <Question 
@@ -58,8 +68,6 @@ export default function Quiz(props) {
             {...arr}
             />
           }) // Map over questions onto page
-
-    
 
     return (
         <div className="quiz">
