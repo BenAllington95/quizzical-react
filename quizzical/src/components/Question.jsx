@@ -9,13 +9,13 @@ export default function Question (props) {
         props.holdAnswer(props.id, answer)
     } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
     
-    const answerElements = props.answers.map(answer => {
+    const answerElements = props.answers.map((answer, index) => {
         return (
             <p key={answer} 
             onClick={(event) => handleChoiceClick(event.target.id)} 
             id={answer} 
             className={selectedChoice === answer ? "answer active" : "answer"}>
-                {handleString(answer)}
+                {handleString(answer)} Index:{index}
             </p>
         )
     }) // maps through the prop answers array and converts into HTML, including a ternary that will give an active class to the element if the text matches the string of the element

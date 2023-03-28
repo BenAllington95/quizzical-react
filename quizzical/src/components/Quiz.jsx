@@ -9,6 +9,7 @@ import { nanoid } from 'nanoid'
 export default function Quiz(props) {
 
         const [data, setData] = useState([]) // store the data from api
+        const [quizzical, setQuizzical] = useState(false) // submit button to calculate when true
 
         useEffect(() => {
             fetch('https://opentdb.com/api.php?amount=5')
@@ -49,17 +50,25 @@ export default function Quiz(props) {
             }))
         }
 
-        // function checkAnswer(id) {
-        //     setData(prevData => prevData.map(item => {
-        //         if (item.id === id) {
-        //             return { ...item, : true, userAnswer: answer};
-        //         } else {
-        //             return item;
-        //         }
-        //     }))
 
-        // }
+        useEffect(() => {
+            if (quizzical) {
+                console.log(countIsHeld(data))
+                
+            } else {
 
+            }
+        }, [quizzical])
+
+        function countIsHeld(arr) {
+            const count = arr.filter(obj => obj.isHeld).length;
+
+            return count
+        }
+
+    
+
+    
         const quizElements = data.map((arr, index) => {
             return <Question 
             key={arr.question}
@@ -78,10 +87,12 @@ export default function Quiz(props) {
             <div className="questions">
                 {quizElements}
             </div>
+
+            {quizzical && <p>Answers Correct: 0/{data.length}</p>}
             
             <button 
             className="submit-button"
-            onClick={()=> console.log("submit button")}>
+            onClick={()=> setQuizzical(true)}>
             Check
             </button>
 
