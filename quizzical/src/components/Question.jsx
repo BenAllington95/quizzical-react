@@ -14,34 +14,34 @@ export default function Question (props) {
             <p key={answer} 
             onClick={(event) => handleChoiceClick(event.target.id)} 
             id={answer} 
-            className={selectedChoice === answer ? "answer active" : "answer"}
-            >{answer}
+            className={selectedChoice === answer ? "answer active" : "answer"}>
+                {handleString(answer)}
             </p>
         )
     }) // maps through the prop answers array and converts into HTML, including a ternary that will give an active class to the element if the text matches the string of the element
 
-    function handleQuestionString(str) {
+    function handleString(str) {
         const string = str
-
-        const replaceQuestionStr = string.replace(/&#039;|&quot;|&ldquo;/g, (match) => {
+        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&amp;/g, (match) => {
             if (match === "&#039;") { // &#039; === '
                 return "'";
               } else if (match === "&quot;") { // &quot; === "
                 return `"`;
               } else if (match === "&ldquo;") { // &ldquo; === "
                 return `"`;
+              } else if (match === "&amp;") { // &amp; === &
+                return `&`;
               } else {
                 return match;
               }
             })
-
-        return replaceQuestionStr
+        return replaceStr
     } // replaces two arguments that need to be changed when being called from api, this includes the double quote and apostrophe symbols
 
 
     return (
         <div className="question">
-            <h3>{handleQuestionString(props.question)}</h3>
+            <h3>{handleString(props.question)}</h3>
             <div className="answers">
                 {answerElements}
             </div>
