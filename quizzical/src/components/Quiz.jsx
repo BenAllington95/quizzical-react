@@ -52,7 +52,6 @@ export default function Quiz(props) {
             }))
         }
 
-
         useEffect(() => {
             if (quizzical) {
                 checkAnswers(data)
@@ -89,6 +88,7 @@ export default function Quiz(props) {
             key={arr.question}
             answers={arr.answers}
             holdAnswer={holdAnswer}
+            quizzical={quizzical}
             {...arr}
             />
           }) // Map over questions onto page
