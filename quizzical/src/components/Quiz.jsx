@@ -55,10 +55,6 @@ export default function Quiz(props) {
         useEffect(() => {
             if (quizzical) {
                 checkAnswers(data)
-                console.log(score)
-                
-            } else {
-
             }
         }, [quizzical])
 

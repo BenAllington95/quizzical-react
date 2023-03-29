@@ -145,18 +145,25 @@ body {
 
                 .answer {
                     border: 0.794239px solid #4D5B9E;
-                    color: #293264;
                     border-radius: 8px;
                     padding: 0.3em 1em;
                     cursor: pointer;
                     text-align: center;
                     transition: all .2s;
+                    font-weight: 500;
+                    
+                    p {
+                        font-size: 1rem;
+                    }
                 }
 
                 .active {
                     background: #293264;
-                    color: #deebf8;
                     transition: all .2s;
+
+                    p {
+                        color: #deebf8;
+                    }
                 } // Active
 
             } // Answers

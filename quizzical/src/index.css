@@ -130,17 +130,22 @@ body p {
 }
 .App .questions .question .answers .answer {
   border: 0.794239px solid #4D5B9E;
-  color: #293264;
   border-radius: 8px;
   padding: 0.3em 1em;
   cursor: pointer;
   text-align: center;
   transition: all 0.2s;
+  font-weight: 500;
+}
+.App .questions .question .answers .answer p {
+  font-size: 1rem;
 }
 .App .questions .question .answers .active {
   background: #293264;
-  color: #deebf8;
   transition: all 0.2s;
+}
+.App .questions .question .answers .active p {
+  color: #deebf8;
 }
 
 @media (max-width: 462px) {

@@ -12,58 +12,52 @@ export default function Question (props) {
         props.holdAnswer(props.id, answer)
       } // to stop changing answer after submitting
 
-        
     } // when the answer is clicked, the text string will be set in selectedChoice state - this will link will set the active button so that an active class can be set to the element 
     
     const answerElements = props.answers.map((answer, index) => {
-
-      const answerStyle = {
-        backgroundColor: selectedChoice === answer ? "#293264" : "white",
-        borderRadius: "8px",
-        padding: "0.5em",
-        transition: "all 0.2s",
-        width: "25%",
-        minHeight: "36px",
-        cursor: "pointer",
-        textAlign: "center"
-      }
-
-      const correctAnswerStyle = {
-        backgroundColor: answer === props.correctAnswer ? "green" : "grey",
-        transition: "all 0.5s",
-        borderRadius: "8px",
-        padding: "0.5em",
-        width: "25%",
-        minHeight: "36px",
-        cursor: "pointer",
-        textAlign: "center",
-        color: answer === props.correctAnswer ? "white" : "black"
-      }
-
-      const textStyle = {
-        color: selectedChoice === answer ? "white" : "#293264",
-        fontSize: "0.9rem"
-      }
-
-
         return (
             <div 
             key={answer}
-            style={props.quizzical ? correctAnswerStyle : answerStyle}
+            className={selectedChoice === answer ? "answer active" : "answer"}
             onClick={() => handleChoiceClick(answer)}>
-              <p style={textStyle}>{answer}</p>
+              <p>{answer}</p>
             </div>
         )
+
     }) // maps through the prop answers array and converts into HTML, including a ternary that will give an active class to the element if the text matches the string of the element
 
-    // <p key={answer} 
-    // onClick={() => handleChoiceClick(answer)} 
-    // id={answer} 
-    // style={answerStyle}
-    // // className={selectedChoice === answer ? "answer active" : "answer"}
-    // >
-    //     {handleString(answer)}
-    // </p> 
+
+    
+
+    const checkedAnswerElements = props.answers.map((answer, index) => {
+
+
+
+      const isCorrect = answer === props.correctAnswer
+      const isSelected = answer === selectedChoice
+      const isIncorrect = answer !== props.correctAnswer && isSelected
+
+      const correctAnswerStyle = {
+        backgroundColor: isIncorrect ? "#F8BCBC" : isCorrect ? "#94D7A2" : "whitesmoke",
+        border: isIncorrect ? "1px solid #F8BCBC" : isCorrect ? "1px solid #94D7A2" : "1px solid #4D5B9E",
+        color: isCorrect ? "whitesmoke" : "blue",
+        opacity: isCorrect ? "1.0" : "0.7",
+        fontWeight: isCorrect || isIncorrect ? "bold" : "500"
+      }
+
+      return (
+          <div 
+          key={answer}
+          className="answer"
+          style={correctAnswerStyle}>
+            <p>{answer}</p>
+          </div>
+      )
+
+  }) // new answer element map to use after the submit butotn is pressed, to compare answers and change styles
+
+
+
 
     function handleString(str) {
         const string = str
@@ -92,8 +86,18 @@ export default function Question (props) {
         <div className="question">
             <h3>{handleString(props.question)}</h3>
             <div className="answers">
-                {answerElements}
+                {!props.quizzical ? answerElements : checkedAnswerElements}
             </div>
         </div>
     )
 }
+
+
+// <p key={answer} 
+    // onClick={() => handleChoiceClick(answer)} 
+    // id={answer} 
+    // style={answerStyle}
+    // // className={selectedChoice === answer ? "answer active" : "answer"}
+    // >
+    //     {handleString(answer)}
+    // </p> 
