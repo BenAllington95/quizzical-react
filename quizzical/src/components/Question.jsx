@@ -39,7 +39,7 @@ export default function Question (props) {
 
       const correctAnswerStyle = {
         backgroundColor: isIncorrect ? "#F8BCBC" : isCorrect ? "#94D7A2" : "whitesmoke",
-        border: isIncorrect ? "1px solid #F8BCBC" : isCorrect ? "1px solid #94D7A2" : "1px solid #4D5B9E",
+        border: isIncorrect ? "1px solid #F8BCBC" : isCorrect ? "1px solid #94D7A2" : "1px solid rgba(77, 91, 158, 0.5)",
         color: isCorrect ? "whitesmoke" : "blue",
         opacity: isCorrect ? "1.0" : "0.7",
         fontWeight: isCorrect || isIncorrect ? "bold" : "500"
