@@ -41,7 +41,7 @@ body p {
   border-radius: 10px;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
   padding: 2em;
-  min-height: 50vh;
+  min-height: 75vh;
 }
 .App .quiz .submit-button {
   padding: 1em 3em;
@@ -91,10 +91,12 @@ body p {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1em;
 }
 .App .quiz .start-items .start-title,
 .App .quiz .start-items .start-description {
   color: #293264;
+  text-align: center;
 }
 .App .quiz .start-items .start-description {
   margin: 0.8em 0 2em;
@@ -131,6 +133,7 @@ body p {
 .App .questions .question {
   padding: 1.3em 1em;
   border-bottom: 0.794239px solid #DBDEF0;
+  line-height: 1.4;
 }
 .App .questions .question h3 {
   font-size: 1.125rem;
@@ -151,6 +154,9 @@ body p {
   text-align: center;
   transition: all 0.2s;
   font-weight: 500;
+  align-self: stretch;
+  display: grid;
+  place-content: center;
 }
 .App .questions .question .answers .answer p {
   font-size: 1rem;
@@ -173,7 +179,7 @@ body p {
   .App .quiz {
     width: 100%;
     min-height: 100vh;
-    padding: 2em 1em;
+    padding: 2em 0em;
   }
   .App .quiz .summary-section {
     flex-direction: column;
@@ -188,6 +194,6 @@ body p {
   }
   .App .quiz .questions .question .answers .answer {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.6em;
   }
 }/*# sourceMappingURL=index.css.map */
