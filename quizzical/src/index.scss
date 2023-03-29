@@ -47,6 +47,7 @@ body {
     @include centerFlex("", center);
     font-family: 'Karla', sans-serif;
     min-height: 100vh;
+    transition: all 0.2s;
 
     .quiz {
         background: whitesmoke;
@@ -208,7 +209,7 @@ body {
         .quiz {
             width: 100%;
             min-height: 100vh;
-            padding: 2em 0em;
+            padding: 4em 0em;
 
             .summary-section {
                 flex-direction: column;

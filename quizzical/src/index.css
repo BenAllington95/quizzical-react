@@ -27,6 +27,7 @@ body p {
   flex-direction: "";
   font-family: "Karla", sans-serif;
   min-height: 100vh;
+  transition: all 0.2s;
 }
 .App .quiz {
   background: whitesmoke;
@@ -179,7 +180,7 @@ body p {
   .App .quiz {
     width: 100%;
     min-height: 100vh;
-    padding: 2em 0em;
+    padding: 4em 0em;
   }
   .App .quiz .summary-section {
     flex-direction: column;
