@@ -99,7 +99,7 @@ export default function Quiz(props) {
                 {quizElements}
             </div>
 
-            {quizzical && <p>Answers Correct: {score}/{data.length}</p>}
+            {quizzical && <p className="answer-summary-text">Answers Correct: {score}/{data.length}</p>}
             
             <button 
             className="submit-button"
