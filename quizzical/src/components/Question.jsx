@@ -31,8 +31,6 @@ export default function Question (props) {
 
     const checkedAnswerElements = props.answers.map((answer, index) => {
 
-
-
       const isCorrect = answer === props.correctAnswer
       const isSelected = answer === selectedChoice
       const isIncorrect = answer !== props.correctAnswer && isSelected
@@ -57,29 +55,33 @@ export default function Question (props) {
   }) // new answer element map to use after the submit butotn is pressed, to compare answers and change styles
 
 
+    // function handleString(str) {
+    //     const string = str
+    //     const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&Aacute;|&amp;/g, (match) => {
+    //         if (match === "&#039;") { // &#039; === '
+    //             return "'";
+    //           } else if (match === "&quot;") { // &quot; === "
+    //             return `"`;
+    //           } else if (match === "&ldquo;") { // &ldquo; === "
+    //             return `"`;
+    //           } else if (match === "&amp;") { // &amp; === &
+    //             return `&`;
+    //           } else if (match === "&lrm;") { // &lrm; === "
+    //             return ``;
+    //           } else if (match === "&Aacute;") {
+    //             return `Á`;
+    //           } else {
+    //             return match;
+    //           }
+    //         })
+    //     return replaceStr
+    // } // replaces two arguments that need to be changed when being called from audes the double quote and apostrophe symbols. &lrm;
 
 
-    function handleString(str) {
-        const string = str
-        const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&Aacute;|&amp;/g, (match) => {
-            if (match === "&#039;") { // &#039; === '
-                return "'";
-              } else if (match === "&quot;") { // &quot; === "
-                return `"`;
-              } else if (match === "&ldquo;") { // &ldquo; === "
-                return `"`;
-              } else if (match === "&amp;") { // &amp; === &
-                return `&`;
-              } else if (match === "&lrm;") { // &lrm; === "
-                return ``;
-              } else if (match === "&Aacute;") {
-                return `Á`;
-              } else {
-                return match;
-              }
-            })
-        return replaceStr
-    } // replaces two arguments that need to be changed when being called from api, this includes the double quote and apostrophe symbols. &lrm;
+    function handleString(str){
+      let txt = new DOMParser().parseFromString(str, "text/html")
+      return txt.documentElement.textContent
+  } // converts back into html format, specifically for text
 
 
     return (

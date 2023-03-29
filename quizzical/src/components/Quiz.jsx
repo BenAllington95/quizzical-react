@@ -59,16 +59,20 @@ export default function Quiz(props) {
             }
         }, [quizzical])
 
+        function summaryMessage() {
+            let message
+                if (score < 3) {
+                    return `You scored ${score}/${data.length}, Try Again!`
+                } else {
+                    return `You scored ${score}/${data.length}, Nice work!`
+                } 
+        }
+
 
         function checkAnswers(arr) {
             for (let i=0; i<arr.length; i++) {
                 if (arr[i].correctAnswer === arr[i].userAnswer) {
-                    console.log("correct answer")
                     setScore(prevCount => prevCount + 1)
-                } else if (arr[i].userAnswer === "") {
-                    console.log("blank")
-                } else {
-                    console.log("incorrect anser")
                 }
             }
         }
@@ -96,9 +100,9 @@ export default function Quiz(props) {
 
             {quizzical && 
             <div className="summary-section">
-                <p 
+                <p
                 className="answer-summary-text">
-                    Answers Correct: {score}/{data.length}
+                    {summaryMessage()}
                 </p>
                 <button
                 onClick={props.resetQuiz}
