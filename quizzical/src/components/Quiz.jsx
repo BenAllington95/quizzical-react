@@ -11,6 +11,7 @@ export default function Quiz(props) {
         const [data, setData] = useState([]) // store the data from api
         const [quizzical, setQuizzical] = useState(false) // submit button to calculate when true
         const [score, setScore] = useState(0)
+        const [isLoadingApi, SetIsLoadingApi] = useState(false)
 
 
         useEffect(() => {
@@ -19,7 +20,19 @@ export default function Quiz(props) {
                 .then(data => refactorData(data.results))
         }, [0]) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
        
-    
+
+        useEffect(() => {
+            let timer;
+            if (props.startQuiz) {
+              timer = setTimeout(() => {
+                SetIsLoadingApi(true)
+            }, 500);
+            }
+            return () => clearTimeout(timer);
+          }, [props.startQuiz]);
+
+          console.log(isLoadingApi)
+
         function refactorData(api) {
     
           setData(prevData => api.map(item => {
@@ -94,9 +107,9 @@ export default function Quiz(props) {
         <img className="blue-blob" src={blueBlob} />
         <img className="yellow-blob" src={yellowBlob} />
 
-            <div className="questions">
+            {isLoadingApi && <div className="questions">
                 {quizElements}
-            </div>
+            </div>}
 
             {quizzical && 
             <div className="summary-section">
@@ -111,7 +124,7 @@ export default function Quiz(props) {
                 </button>
             </div>}
             
-            {!quizzical && <button 
+            {isLoadingApi && !quizzical && <button 
             className="submit-button"
             onClick={()=> setQuizzical(true)}>
                 Check

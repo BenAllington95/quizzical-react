@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid'
+import React, { useState } from 'react';
 import Quiz from './components/Quiz'
 import Home from './components/Home'
 
@@ -9,7 +8,7 @@ export default function App() {
 
   function handleStartButton() {
       setStartQuiz(prevBoolean => !prevBoolean)
-  } 
+  }  // flips the startQuiz to true to hide start screen and load the quiz
   
   return (
     <div className="App">
@@ -18,10 +17,11 @@ export default function App() {
         key="start"
         startQuiz={handleStartButton}
         /> 
-        : 
+        :
         <Quiz 
         key="quiz"
         resetQuiz={handleStartButton}
+        startQuiz={startQuiz}
         />}
     </div>
   );

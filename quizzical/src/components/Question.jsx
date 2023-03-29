@@ -79,9 +79,10 @@ export default function Question (props) {
 
 
     function handleString(str){
-      let txt = new DOMParser().parseFromString(str, "text/html")
-      return txt.documentElement.textContent
-  } // converts back into html format, specifically for text
+      const parser = new DOMParser();
+      const decodedString = parser.parseFromString(`<!doctype html><body>${str}`, 'text/html').body.textContent;
+      return decodedString;
+  } // converts back into html format, specifically for text, used ChatGpt for this function
 
 
     return (
