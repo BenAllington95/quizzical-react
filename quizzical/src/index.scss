@@ -60,7 +60,14 @@ body {
 
         .submit-button {
             @include button()
-        }     
+        }    
+        
+        .summary-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 1em 0;
+        }
 
         .answer-summary-text {
             font-size: 1.3rem;

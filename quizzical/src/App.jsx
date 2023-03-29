@@ -8,7 +8,7 @@ export default function App() {
   const [startQuiz, setStartQuiz] = useState(false)
 
   function handleStartButton() {
-      setStartQuiz(true)
+      setStartQuiz(prevBoolean => !prevBoolean)
   } 
   
   return (
@@ -21,6 +21,7 @@ export default function App() {
         : 
         <Quiz 
         key="quiz"
+        resetQuiz={handleStartButton}
         />}
     </div>
   );

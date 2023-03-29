@@ -53,6 +53,12 @@ body p {
 .App .quiz .submit-button:hover {
   background: #3c477c;
 }
+.App .quiz .summary-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 1em 0;
+}
 .App .quiz .answer-summary-text {
   font-size: 1.3rem;
   font-weight: bold;

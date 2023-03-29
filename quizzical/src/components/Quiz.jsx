@@ -36,7 +36,6 @@ export default function Quiz(props) {
               answers: allAnswers,
               correctAnswer: correctAnswer,
               userAnswer: "",
-              isRight: false,
               isHeld: false
             }
           }))
@@ -55,14 +54,11 @@ export default function Quiz(props) {
         useEffect(() => {
             if (quizzical) {
                 checkAnswers(data)
+            } else {
+                setScore(0)
             }
         }, [quizzical])
 
-        function countIsHeld(arr) {
-            const count = arr.filter(obj => obj.isHeld).length;
-
-            return count
-        }
 
         function checkAnswers(arr) {
             for (let i=0; i<arr.length; i++) {
@@ -76,7 +72,6 @@ export default function Quiz(props) {
                 }
             }
         }
-    
 
     
         const quizElements = data.map((arr, index) => {
@@ -99,13 +94,24 @@ export default function Quiz(props) {
                 {quizElements}
             </div>
 
-            {quizzical && <p className="answer-summary-text">Answers Correct: {score}/{data.length}</p>}
+            {quizzical && 
+            <div className="summary-section">
+                <p 
+                className="answer-summary-text">
+                    Answers Correct: {score}/{data.length}
+                </p>
+                <button
+                onClick={props.resetQuiz}
+                className="submit-button">
+                    Play Again
+                </button>
+            </div>}
             
-            <button 
+            {!quizzical && <button 
             className="submit-button"
             onClick={()=> setQuizzical(true)}>
-            Check
-            </button>
+                Check
+            </button>}
 
         </div>
     )
