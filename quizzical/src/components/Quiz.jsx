@@ -15,7 +15,7 @@ export default function Quiz(props) {
 
 
         useEffect(() => {
-            fetch('https://opentdb.com/api.php?amount=5')
+            fetch(`https://opentdb.com/api.php?amount=${props.apiConditions.amountOfQuestions}&category=${props.apiConditions.category}&difficulty=${props.apiConditions.difficulty}`)
             .then(response => response.json())
                 .then(data => refactorData(data.results))
         }, [0]) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
@@ -29,9 +29,7 @@ export default function Quiz(props) {
             }, 500);
             }
             return () => clearTimeout(timer);
-          }, [props.startQuiz]);
-
-          console.log(isLoadingApi)
+          }, [props.startQuiz]) // hook used to make the button and api data load at the same time
 
         function refactorData(api) {
     
@@ -52,7 +50,7 @@ export default function Quiz(props) {
               isHeld: false
             }
           }))
-        }
+        } // customise the data to what needs to be placed into the components
 
         function holdAnswer(id, answer) {
             setData(prevData => prevData.map(item => {
@@ -70,7 +68,7 @@ export default function Quiz(props) {
             } else {
                 setScore(0)
             }
-        }, [quizzical])
+        }, [quizzical]) // if quizzical is true it will check answers and return value of how many are correct in the score state
 
         function summaryMessage() {
             let message
@@ -88,7 +86,7 @@ export default function Quiz(props) {
                     setScore(prevCount => prevCount + 1)
                 }
             }
-        }
+        } // checks if the user choices match the correct answer and if so increments the score state in app
 
     
         const quizElements = data.map((arr, index) => {
