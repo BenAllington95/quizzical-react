@@ -22,7 +22,6 @@ export default function Home(props) {
         })
     }
 
-    console.log(formData)
 
 
     return (
@@ -40,6 +39,7 @@ export default function Home(props) {
                     <input
                         type="range"
                         name="amountOfQuestions"
+                        className="slider"
                         min="5"
                         max="10"
                         value={formData.amountOfQuestions}
@@ -93,7 +93,10 @@ export default function Home(props) {
 
                 </form>
 
-                <button className="start-button" onClick={props.startQuiz}>
+                <button className="start-button" onClick={() => {
+                props.startQuiz()
+                props.handleQuestionData(formData)
+                }}>
                 Start Quiz
                 </button>
             </div>
