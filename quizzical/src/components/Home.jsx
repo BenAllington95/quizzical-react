@@ -36,12 +36,13 @@ export default function Home(props) {
                 <p className="start-description">Test your knowledge and challenge yourself with our quiz app!</p>
                 <form>
                     <label htmlFor="number-input">
-                    Number of Questions:
+                    Number of Questions: {formData.amountOfQuestions}
                     <input
-                        type="number"
+                        type="range"
                         name="amountOfQuestions"
                         min="5"
                         max="10"
+                        value={formData.amountOfQuestions}
                         onChange={(event) => handleFormUpdate(event)}
                     />
                     </label>
@@ -49,7 +50,9 @@ export default function Home(props) {
                     <label htmlFor="category-input">
                     Category: 
                     <select 
-                    onChange={(event) => handleFormUpdate(event)} name="category">
+                    onChange={(event) => handleFormUpdate(event)} 
+                    className="form-list"
+                    name="category">
                         <option value="">Any Category</option>
                         <option value="9">General Knowledge</option>
                         <option value="10">Entertainment: Books</option>
@@ -80,7 +83,8 @@ export default function Home(props) {
                     
                     <label htmlFor="difficulty-input">
                     Difficulty: 
-                    <select onChange={(event) => handleFormUpdate(event)}name="difficulty">
+                    <select onChange={(event) => handleFormUpdate(event)}name="difficulty"
+                    className="form-list">
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>

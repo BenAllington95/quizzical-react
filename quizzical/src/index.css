@@ -103,6 +103,28 @@ body p {
   margin: 0.8em 0 2em;
   font-size: 16px;
 }
+.App .quiz .start-items form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.5em;
+  width: 90%;
+}
+.App .quiz .start-items form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.App .quiz .start-items form input, .App .quiz .start-items form .form-list {
+  cursor: pointer;
+  font-size: 1rem;
+  max-width: 100%;
+}
+.App .quiz .start-items form .form-list {
+  padding: 0.75em 0.5em;
+  border-radius: 7.5px;
+  font-family: "Karla", sans-serif;
+}
 .App .quiz .start-items .start-button {
   padding: 1em 3em;
   border-radius: 10px;
@@ -174,13 +196,10 @@ body p {
   .App {
     min-height: 100vh;
   }
-  .App .start {
-    padding: 1em;
-  }
   .App .quiz {
     width: 100%;
     min-height: 100vh;
-    padding: 4em 0em;
+    padding: 2em;
   }
   .App .quiz .summary-section {
     flex-direction: column;
