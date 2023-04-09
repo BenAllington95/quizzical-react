@@ -6,7 +6,7 @@ export default function Home(props) {
 
     const [formData, setFormData] = useState({
         amountOfQuestions: "5",
-        category:"9",
+        category:"",
         difficulty: "easy"
     })
 
@@ -53,7 +53,7 @@ export default function Home(props) {
                     onChange={(event) => handleFormUpdate(event)} 
                     className="form-list"
                     name="category">
-                        <option value="">Any Category</option>
+                        <option value="0">Any Category</option>
                         <option value="9">General Knowledge</option>
                         <option value="10">Entertainment: Books</option>
                         <option value="11">Entertainment: Film</option>

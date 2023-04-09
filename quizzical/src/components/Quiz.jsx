@@ -13,9 +13,15 @@ export default function Quiz(props) {
         const [score, setScore] = useState(0)
         const [isLoadingApi, SetIsLoadingApi] = useState(false)
 
+        const questionCategory = props.apiConditions.category === "" ? "" : `&category=${props.apiConditions.category}`
+
+        console.log(props.apiConditions.category)
+
 
         useEffect(() => {
-            fetch(`https://opentdb.com/api.php?amount=${props.apiConditions.amountOfQuestions}&category=${props.apiConditions.category}&difficulty=${props.apiConditions.difficulty}`)
+
+            
+            fetch(`https://opentdb.com/api.php?amount=${props.apiConditions.amountOfQuestions}${questionCategory}&difficulty=${props.apiConditions.difficulty}`)
             .then(response => response.json())
                 .then(data => refactorData(data.results))
         }, [0]) // fetch api for quiz questions, refactorData will create the object in way to manage certain states
