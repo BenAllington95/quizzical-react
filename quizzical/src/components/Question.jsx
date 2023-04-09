@@ -23,7 +23,6 @@ export default function Question (props) {
               <p>{handleString(answer)}</p>
             </div>
         )
-
     }) // maps through the prop answers array and converts into HTML, including a ternary that will give an active class to the element if the text matches the string of the element
 
 
