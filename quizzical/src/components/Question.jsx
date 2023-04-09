@@ -20,7 +20,7 @@ export default function Question (props) {
             key={answer}
             className={selectedChoice === answer ? "answer active" : "answer"}
             onClick={() => handleChoiceClick(answer)}>
-              <p>{answer}</p>
+              <p>{handleString(answer)}</p>
             </div>
         )
 
@@ -55,6 +55,36 @@ export default function Question (props) {
   }) // new answer element map to use after the submit butotn is pressed, to compare answers and change styles
 
 
+
+    function handleString(str){
+      const parser = new DOMParser();
+      const decodedString = parser.parseFromString(`<!doctype html><body>${str}`, 'text/html').body.textContent;
+      return decodedString;
+  } // converts back into html format, specifically for text, used ChatGpt for this function
+
+
+    return (
+        <div className="question">
+            <h3>{handleString(props.question)}</h3>
+            <div className="answers">
+                {!props.quizzical ? answerElements : checkedAnswerElements}
+            </div>
+        </div>
+    )
+}
+
+// OLD code, keeeping for reference incase i need to go back to them
+
+
+// <p key={answer} 
+    // onClick={() => handleChoiceClick(answer)} 
+    // id={answer} 
+    // style={answerStyle}
+    // // className={selectedChoice === answer ? "answer active" : "answer"}
+    // >
+    //     {handleString(answer)}
+    // </p> 
+
     // function handleString(str) {
     //     const string = str
     //     const replaceStr = string.replace(/&#039;|&quot;|&ldquo;|&lrm;|&Aacute;|&amp;/g, (match) => {
@@ -76,31 +106,3 @@ export default function Question (props) {
     //         })
     //     return replaceStr
     // } // replaces two arguments that need to be changed when being called from audes the double quote and apostrophe symbols. &lrm;
-
-
-    function handleString(str){
-      const parser = new DOMParser();
-      const decodedString = parser.parseFromString(`<!doctype html><body>${str}`, 'text/html').body.textContent;
-      return decodedString;
-  } // converts back into html format, specifically for text, used ChatGpt for this function
-
-
-    return (
-        <div className="question">
-            <h3>{handleString(props.question)}</h3>
-            <div className="answers">
-                {!props.quizzical ? answerElements : checkedAnswerElements}
-            </div>
-        </div>
-    )
-}
-
-
-// <p key={answer} 
-    // onClick={() => handleChoiceClick(answer)} 
-    // id={answer} 
-    // style={answerStyle}
-    // // className={selectedChoice === answer ? "answer active" : "answer"}
-    // >
-    //     {handleString(answer)}
-    // </p> 
